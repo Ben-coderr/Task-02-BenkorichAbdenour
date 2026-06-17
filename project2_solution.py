@@ -16,12 +16,12 @@
     4. Use imblearn pipelines and hyperparameter tuning (GridSearchCV)
 
   Architectural Constraints (Zero-Leakage Protocol):
-    ✅  NEVER apply SMOTE or Scalers prior to the Train/Test Split
-    ✅  ALWAYS use imblearn.pipeline.Pipeline to isolate resampling in CV
-    ✅  LR pipeline: StandardScaler → SMOTE → LogisticRegression
-    ✅  RF pipeline: SMOTE → RandomForestClassifier  (no scaler needed)
-    ✅  Tune SMOTE k_neighbors alongside classifier hyperparameters
-    ✅  Optimize via ROC-AUC, not Accuracy
+      NEVER apply SMOTE or Scalers prior to the Train/Test Split
+      ALWAYS use imblearn.pipeline.Pipeline to isolate resampling in CV
+      LR pipeline: StandardScaler → SMOTE → LogisticRegression
+      RF pipeline: SMOTE → RandomForestClassifier  (no scaler needed)
+      Tune SMOTE k_neighbors alongside classifier hyperparameters
+      Optimize via ROC-AUC, not Accuracy
 
   Dataset:
     Synthetic credit-card-style fraud dataset (50,000 transactions, ~0.17% fraud)
@@ -296,7 +296,7 @@ print("""
   ▸ ZERO-LEAKAGE PROTOCOL:
     The document explicitly states:
       ❌ WRONG:   Entire Dataset → SMOTE → Train/Test Split  (DATA LEAKAGE!)
-      ✅ CORRECT: Entire Dataset → Stratified Split → SMOTE only on Train fold
+       CORRECT: Entire Dataset → Stratified Split → SMOTE only on Train fold
 
     We split FIRST, then all preprocessing (scaling, SMOTE) happens INSIDE
     the imblearn pipeline — applied only to the training fold during CV.
@@ -396,7 +396,7 @@ print("""
     │ Undersampling    │ Destroys valuable baseline data. (THE LOSS)        │
     │ Oversampling     │ Mere duplication → severe overfitting. (THE ECHO)  │
     │ SMOTE            │ Synthetic interpolation. Creates, doesn't clone.   │
-    │                  │ (THE SYNTHESIS) ✅                                  │
+    │                  │ (THE SYNTHESIS)                                   │
     └──────────────────┴────────────────────────────────────────────────────┘
 
   ▸ How SMOTE Interpolates:
@@ -462,7 +462,7 @@ print("""
     Standard pipeline steps expect a transform(X) method that only modifies
     the feature matrix. Resampling is ignored or crashes.
 
-  ▸ ✅ imblearn.pipeline.Pipeline  (PRODUCTION STANDARD)
+  ▸  imblearn.pipeline.Pipeline  (PRODUCTION STANDARD)
     Natively supports resampling. Modifies BOTH the feature matrix (X)
     and the target vector (y) strictly on the training fold via the
     fit_resample interface.
@@ -975,11 +975,11 @@ print("""
                                                                          Tree                        test data)
                                                                          Scoring)
 
-  ✅ Ditch Accuracy. Optimize using Recall, F1, and ROC-AUC.
-  ✅ Use SMOTE to interpolate and generate, NEVER just duplicate.
-  ✅ NEVER apply SMOTE or Scalers prior to the Train/Test Split.
-  ✅ ALWAYS use imblearn.pipeline.Pipeline to safely isolate resampling in CV.
-  ✅ Tune preprocessing and model hyperparameters holistically inside GridSearchCV.
+   Ditch Accuracy. Optimize using Recall, F1, and ROC-AUC.
+   Use SMOTE to interpolate and generate, NEVER just duplicate.
+   NEVER apply SMOTE or Scalers prior to the Train/Test Split.
+   ALWAYS use imblearn.pipeline.Pipeline to safely isolate resampling in CV.
+   Tune preprocessing and model hyperparameters holistically inside GridSearchCV.
 
   → Deploy with precision.
 """)
@@ -1021,7 +1021,7 @@ best_model = summary_df.loc[best_idx, "Model"]
 best_roc = summary_df.loc[best_idx, "ROC-AUC"]
 best_recall = summary_df.loc[best_idx, "Recall"]
 
-print(f"\n  🏆 BEST MODEL: {best_model}")
+print(f"\n   BEST MODEL: {best_model}")
 print(f"     ROC-AUC: {best_roc:.4f}  |  Recall: {best_recall:.4f}")
 
 # Save results
