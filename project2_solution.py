@@ -88,8 +88,10 @@ print("\n" + "─" * 80)
 print("  SECTION 1: Data Generation & Loading")
 print("─" * 80)
 
-DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                         "creditcard_fraud.csv")
+try:
+    DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "creditcard_fraud.csv")
+except NameError:
+    DATA_PATH = os.path.join(os.getcwd(), "creditcard_fraud.csv")
 
 
 def generate_synthetic_fraud_data(n_samples=50000, fraud_ratio=0.0017, seed=42):
@@ -119,7 +121,7 @@ def generate_synthetic_fraud_data(n_samples=50000, fraud_ratio=0.0017, seed=42):
     print(f"    → Fraudulent: {n_fraud:,} ({fraud_ratio * 100:.2f}%)")
     print(f"    → Imbalance Ratio: 1:{n_legit // n_fraud}")
 
-    # ── Legitimate transactions ──
+    # -- Legitimate transactions --
     V_legit = np.random.randn(n_legit, 28)
     V_legit[:, 0] += 0.5    # V1 tends positive for legit
     V_legit[:, 3] += 0.3    # V4 tends positive for legit
@@ -128,7 +130,7 @@ def generate_synthetic_fraud_data(n_samples=50000, fraud_ratio=0.0017, seed=42):
     time_legit = np.sort(np.random.uniform(0, 172800, n_legit))  # ~48 hours
     amount_legit = np.abs(np.random.lognormal(mean=3.5, sigma=1.2, size=n_legit))
 
-    # ── Fraudulent transactions ──
+    # -- Fraudulent transactions --
     V_fraud = np.random.randn(n_fraud, 28) * 1.5  # higher variance
     V_fraud[:, 0] -= 2.0    # V1 shifts strongly negative
     V_fraud[:, 2] += 1.5    # V3 shifts positive
@@ -141,7 +143,7 @@ def generate_synthetic_fraud_data(n_samples=50000, fraud_ratio=0.0017, seed=42):
     time_fraud = np.sort(np.random.uniform(0, 172800, n_fraud))
     amount_fraud = np.abs(np.random.lognormal(mean=4.5, sigma=1.8, size=n_fraud))
 
-    # ── Assemble DataFrame ──
+    # -- Assemble DataFrame --
     V_cols = [f"V{i}" for i in range(1, 29)]
 
     df_legit = pd.DataFrame(V_legit, columns=V_cols)
@@ -1023,8 +1025,10 @@ print(f"\n  🏆 BEST MODEL: {best_model}")
 print(f"     ROC-AUC: {best_roc:.4f}  |  Recall: {best_recall:.4f}")
 
 # Save results
-results_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                            "model_comparison_results.csv")
+try:
+    results_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "model_comparison_results.csv")
+except NameError:
+    results_path = os.path.join(os.getcwd(), "model_comparison_results.csv")
 summary_df.to_csv(results_path, index=False)
 print(f"\n  ✓ Results saved to: model_comparison_results.csv")
 
