@@ -1,69 +1,0 @@
-Data Science
-Project 2
-
-Industrial Training Kit
-Batch: 2026 | Powered by DecodeLabs
-
-WELCOME TO THE TEAM!
-Step into the role of a Data Scientist at
-DecodeLabs. Project 2 is your vital bridge:
-Supervised Learning (Fraud Detect
-ion Pipeline).
-This track isn't about "just predicting
-outcomes"—it's about Algorithmic Precision.
-Now that you have mastered data wrangling, you
-must master the art of handling highly
-imbalanced datasets using SMOTE, training
-robust classification models like Random Forest,
-and completely discarding misleading 'Accuracy'
-metrics in favor of strict Precision, Recall, and
-ROC-AUC evaluation. By completing this
-milestone, you are proving you can identify
-hidden anomalies and protect financial
-ecosystems through pure machine learning logic.
-Let’s build a pipeline that detects fraud with
-absolute clarity.
-
-🚀
-
-Project 2:
-Supervised Learning
-(Fraud Detection
-Pipeline)
-Goal: Build and tune a classification
-model to identify fraudulent
-transactions in a highly imbalanced
-dataset.
-Key Requirements:
-Implement SMOTE (Synthetic Minority
-Over-sampling) to handle class
-imbalance.
-Train multiple algorithms (Logistic
-Regression, Random Forest) using ScikitLearn.
-Discard "Accuracy" and evaluate the
-model using strict Precision, Recall, and
-ROC-AUC metrics.
-Key Skills: Classification algorithms,
-Scikit-Learn pipelines, imbalanced data
-handling, hyperparameter tuning.
-
-CONCLUSION
-The absolute best way to master Supervised Learning is
-through rigorous model evaluation, not just theory. Don't
-just aim to complete these projects; take them one by one,
-experiment with unique solutions—like tuning the
-hyperparameters of your Logistic Regression or comparing
-different synthetic sampling strategies—and treat every
-"false positive" as a valuable learning opportunity. As you
-build these milestones at DecodeLabs, you are creating a
-real-world analytical portfolio that showcases your machine
-learning proficiency to future tech firms or financial
-institutions. Your journey to becoming a professional Data
-Scientist accelerates right here, right now, with the very first
-classification algorithm you train today.
-
-THANK YOU
-📞 +91 9236011887 ✉ decodelabs.tech@gmail.com
-🌎 www.decodelabs.tech 📍 GREATER LUCKNOW, INDIA
-
-
