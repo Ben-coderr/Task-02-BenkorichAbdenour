@@ -68,7 +68,10 @@ warnings.filterwarnings("ignore")
 sns.set_theme(style="whitegrid", palette="muted", font_scale=1.1)
 
 # Output directory for saved plots
-PLOT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "plots")
+try:
+    PLOT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "plots")
+except NameError:
+    PLOT_DIR = os.path.join(os.getcwd(), "plots")
 os.makedirs(PLOT_DIR, exist_ok=True)
 
 print("=" * 80)
